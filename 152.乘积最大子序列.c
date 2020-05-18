@@ -34,12 +34,36 @@
 
 // @lc code=start
 
+int max(int a, int b)
+{
+    return a > b ? a : b;
+}
+
+int min(int a, int b)
+{
+    return a < b ? a : b;
+} 
 
 int maxProduct(int* nums, int numsSize)
 {
+    int res = nums[0];
+    int maxs = 1, mins = 1;
+    
+    for (int i = 0; i < numsSize; i++) {
+        if (nums[i] < 0) {
+            int tmp = maxs;
+            maxs = mins;
+            mins = tmp;
+        }
+        
+        maxs = max(maxs * nums[i], nums[i]);
+        mins = min(mins * nums[i], nums[i]);
+        
+        res = max(maxs, res); 
+    }
 
+    return res;
 }
-
 
 // @lc code=end
 
