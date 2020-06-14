@@ -54,9 +54,30 @@
 
 // @lc code=start
 
+int findBestValue(int* arr, int arrSize, int target)
+{
+    int i;
+    int j;
+    int sum;
+    int distance = target;
 
-int findBestValue(int* arr, int arrSize, int target){
+    for (i = 1; i < target; i++) {
+        sum = 0;
+        for (j = 0; j < arrSize; j++) {
+            if (arr[j] > i) {
+                sum += i;
+            } else {
+                sum += arr[j];
+            }
+        }
 
+        if (abs(target - sum) < distance) {
+            distance = abs(target - sum);
+        } else {
+            return i - 1;
+        }
+    } 
+    return 0;
 }
 // @lc code=end
 
